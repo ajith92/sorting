@@ -26,6 +26,9 @@ we can start our iteration index from the newly coming array(may be sorted or un
 already soted array, this is adaptive according to me
 
 
+Question is in the description of first commit
+
+
 
 
 
