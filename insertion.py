@@ -7,8 +7,6 @@ def insertion_sort(nums):
 			j-=1
 		nums[j+1]=a
 	
-	return nums
-
 def get_data():
 	nums=[]
 	while True:
