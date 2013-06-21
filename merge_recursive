@@ -1,0 +1,44 @@
+def merge(first,second):
+  sorted=[]
+	i,j=0,0
+	
+	while i<len(first) and j<len(second):
+		if first[i]<second[j]:
+			sorted.append(first[i])	
+			i+=1
+		else :
+			sorted.append(second[j])
+			j+=1		
+	if i<len(first):
+		sorted+=first[i:]
+	else:
+		sorted+=second[j:]	
+	return sorted	
+
+def merge_sort(nums):
+	if len(nums)>1:
+		mid=len(nums)/2
+		first=merge_sort(nums[:mid])
+		second=merge_sort(nums[mid:])
+		return merge(first,second)
+	return nums
+
+def get_data():
+	nums=[]
+	while True:
+		a=int(raw_input("Enter a number (-1 if done) : "))
+		if a==-1:
+			break
+		nums.append(a)
+	return nums
+
+if __name__=='__main__':
+	#collect data
+	nums=get_data()
+	#print input data
+	print "Input data is : ",nums
+	#sort data
+	nums=merge_sort(nums)
+	#print sorted data
+	print "sorted data is : ",nums
+ 
