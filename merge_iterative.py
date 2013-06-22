@@ -1,29 +1,33 @@
-def merge_sort(nums):
-  """ THIS ALGO IS INCOMPLETE....WORKED ON IT, BUT STILL DINT FINISH IT
-		NEEDED SOME MORE TIME TO FINISH (im just there)"""
-	buff=[]
-	i=0	#index for 1st half in merge
-	j=0	#index for 2nd half in merge
-	for iaddfac in list[2**z for z in range(1,15)]:
-		if i+iaddfac<len(nums):
-			
-			jaddfac=iaddfac/2
-			j=i+jaddfac
-			while i<i+jaddfac and j<j+jaddfac:
-				if nums[i]<nums[j]:
-					buff.append(nums[i])
-				else:
-					buff.append(nums[j])
-			if i<i+jaddfac:
-				buff+=nums[i:i+jaddfac]
-			else:
-				buff+=nums[j:j+jaddfac]
-		else:
-			return buff		
-			
-		  
+def merge_stage(nums,iaddfac):
+    buffer=[]
+    jaddfac=iaddfac/2
+    i=0
+    j=i+jaddfac
+    while i<len(nums) or j<len(nums):
+        while i<i+jaddfac and j<j+jaddfac:
+            if nums[i]<nums[j]:
+                buffer.append(nums[i])	
+                i+=1
+            else :
+                buffer.append(nums[j])
+                j+=1		
+        if i<i+jaddfac:buffer+=nums[i:i+jaddfac]
+        else:buffer+=nums[j:j+jaddfac]	
+        i=i+iaddfac
+        j=i+jaddfac
+    if i<len(nums):
+        buffer+=nums[i:len(nums)]
+    return buffer
 
-def  get_data():
+def merge_sort(nums):
+    list1=[2**z for z in range(1,15)]
+    for iaddfac in list1: 
+        if iaddfac/2 < len(nums):
+            nums=merge_stage(nums,iaddfac)
+        else: break 
+    return nums
+
+def get_data():
 	nums=[]
 	while True:
 		a=int(raw_input("Enter a number (-1 if done) : "))
@@ -41,4 +45,4 @@ if __name__=='__main__':
 	nums=merge_sort(nums)
 	#print sorted data
 	print "sorted data is : ",nums
- 
+raw_input("Enter to exit :" )
