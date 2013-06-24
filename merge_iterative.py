@@ -3,16 +3,18 @@ def merge_stage(nums,iaddfac):
     jaddfac=iaddfac/2
     i=0
     j=i+jaddfac
-    while i<len(nums) or j<len(nums):
-        while i<i+jaddfac and j<j+jaddfac:
-            if nums[i]<nums[j]:
-                buffer.append(nums[i])	
-                i+=1
+    while i<len(nums) and j<len(nums):
+	i1,j1=i,j
+        while i1<i+jaddfac and j1<j+jaddfac and j1<len(nums):
+            if nums[i1]<nums[j1]:
+                buffer.append(nums[i1])	
+                i1+=1
             else :
-                buffer.append(nums[j])
-                j+=1		
-        if i<i+jaddfac:buffer+=nums[i:i+jaddfac]
-        else:buffer+=nums[j:j+jaddfac]	
+                buffer.append(nums[j1])
+                j1+=1		
+        if i1<i+jaddfac:buffer+=nums[i1:i+jaddfac]
+        elif j1<j+jaddfac:buffer+=nums[j1:j+jaddfac]
+	else:buffer+=nums[j1:len(nums)]	
         i=i+iaddfac
         j=i+jaddfac
     if i<len(nums):
@@ -45,4 +47,4 @@ if __name__=='__main__':
 	nums=merge_sort(nums)
 	#print sorted data
 	print "sorted data is : ",nums
-raw_input("Enter to exit :" )
+	raw_input("Enter to exit :" )
