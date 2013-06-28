@@ -1,0 +1,44 @@
+def length(a):
+        if a[0]==None:return len(a)-1
+        else:return len(a)
+
+def heapify(nums,parent):
+        if 2*parent<=length(nums):
+                if 2*parent+1<=length(nums):
+                        if nums[2*parent]>nums[2*parent+1]:
+                                if nums[2*parent]>nums[parent]:
+                                        nums[parent],nums[2*parent]=nums[2*parent],nums[parent]
+                                        heapify(nums,2*parent)
+                                else:return nums
+                        else:
+                                if nums[2*parent+1]>nums[parent]:
+                                        nums[parent],nums[2*parent+1]=nums[2*parent+1],nums[parent]
+                                        heapify(nums,2*parent+1)
+                                else:return nums
+                else:
+                        if nums[2*parent]>nums[parent]:
+                                nums[parent],nums[2*parent]=nums[2*parent],nums[parent]
+                                heapify(nums,2*parent)
+                        else:return nums
+        else:return nums
+
+def get_data():
+        nums=[]
+        nums.append(None)
+        while True:
+                a=int(raw_input("Enter a number (-1 if done) : "))
+                if a==-1:
+                        break
+                nums.append(a)
+        return nums
+
+if __name__=='__main__':
+        #collect data
+        nums=get_data()
+        #print input data
+        print "Input data is : ",nums[1:]
+        #sort data
+        for i in range(length(nums)/2,0,-1):
+                heapify(nums,i)
+        #print heap
+        print "heapified data is : ",nums[1:]
