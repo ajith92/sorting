@@ -1,0 +1,47 @@
+def heapify(nums,parent):
+    if 2*parent+1<len(nums):
+        if 2*parent+2<len(nums):
+            if nums[2*parent+1]>nums[2*parent+2]:
+                if nums[2*parent+1]>nums[parent]:
+                    nums[parent],nums[2*parent+1]=nums[2*parent+1],nums[parent]
+                    nums=heapify(nums,2*parent+1)
+                else: return nums
+            else:
+                if nums[2*parent+2]>nums[parent]:
+                    nums[parent],nums[2*parent+2]=nums[2*parent+2],nums[parent]
+                    nums=heapify(nums,2*parent+2)
+                else: return nums
+        else: 
+            if nums[2*parent+1]>nums[parent]:
+                    nums[parent],nums[2*parent+1]=nums[2*parent+1],nums[parent]
+                    nums=heapify(nums,2*parent+1)
+            else: return nums
+    return nums
+
+def heapsort(nums):
+    for i in range(1,len(nums)):
+        nums[0],nums[len(nums)-i]=nums[len(nums)-i],nums[0]
+        nums1=heapify(nums[:len(nums)-i],0)
+        nums=nums1+nums[len(nums)-i:]
+    return nums
+
+def get_data():
+        nums=[]
+        while True:
+            a=int(raw_input("Enter a number (-1 if done) : "))
+            if a==-1:
+                break
+            nums.append(a)
+        return nums
+
+if __name__=='__main__':
+        #collect data
+        nums=get_data()
+        #print input data
+        print "Input data is : ",nums
+        for i in range((len(nums)/2)-1,-1,-1):
+            nums=heapify(nums,i)
+        #print "Heapified data is : ",nums
+        nums=heapsort(nums)
+        print "Sorted data is : ",nums
+        raw_input("press enter to exit : ")
